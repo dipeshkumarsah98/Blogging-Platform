@@ -4,6 +4,14 @@
 
 1. **Fork this Repository**: Click on the "Fork" button at the top right corner of this repository to create a copy of it under your GitHub account. You will work on your forked repository to make changes and contributions.
 
+### README Instructions:
+
+1. **README for Backend**: 
+    - Ensure the README in the `backend` folder provides clear instructions on how to install dependencies and run the backend server.
+
+2. **README for Frontend**:
+    - Ensure the README in the `frontend` folder provides clear instructions on how to install dependencies and start the frontend development server.
+
 ### Backend (Node.js with Express and Chosen ORM):
 The backend project should be located in the `backend` folder and use the latest version of Express.js.
 
