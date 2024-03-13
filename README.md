@@ -22,14 +22,15 @@ The backend project should be located in the `backend` folder and use the latest
 3. **Define Data Models**:
     - **Blog Post Model**: `id`, `title`, `content`, `author`, `createdAt`, `updatedAt`, `imageURL`.
     - **Comment Model**: `id`, `postId`, `author`, `content`, `createdAt`.
+    - **User Model**: `id, username, email, password, createdAt, updatedAt`.
 
 4. **Implement CRUD Operations**: Develop CRUD operations using the chosen ORM for creating, retrieving, updating, and deleting blog posts and comments.
 
 5. **Implement Authentication and Authorization**:
     - Allow users to sign up and log in securely.
     - Generate JWT tokens for authentication.
-    - Implement middleware for JWT token verification and authorization.
-    - Restrict access to certain endpoints based on user roles.
+    - Implement middleware for JWT token for authentication.
+    - Implement endpoint authorization to restrict user access, allowing only the author of a blog post or comment to perform actions such as editing or deleting their own content. Ensure that users can only modify or remove content they authored.
 
 6. **Challenging Task (Optional)**: Implement a feature for collaborative editing of blog posts. Users can edit a blog post simultaneously, and their changes are saved in real-time (optional: using WebSocket technology).
 
@@ -43,7 +44,7 @@ The frontend project should be located in the `frontend` folder and use the late
     - Display a list of blog posts with images.
     - Allow users to view individual blog posts with associated images.
     - Enable users to create new blog posts with image uploads.
-    - Implement comment functionality for blog posts, allowing users to view existing comments and add new comments.
+    - Implement comment functionality for blog posts, allowing users to view comments.
 
 3. **Utilize Next.js Features**:
     - Leverage Next.js's routing and server-side rendering for enhanced performance and SEO.
@@ -56,7 +57,7 @@ The frontend project should be located in the `frontend` folder and use the late
 5. **Implement Authentication and Authorization**:
     - Enable users to sign up and log in securely.
     - Manage JWT token storage and usage for authenticated requests.
-    - Implement appropriate UI components and navigation based on user authentication status.
+    - Allow only the author of a blog post or comment to perform actions such as editing or deleting their own content. Ensure that users can only modify or remove content they authored.
 
 6. **Styling**:
     - Style the application using CSS or any preferred styling solution.
