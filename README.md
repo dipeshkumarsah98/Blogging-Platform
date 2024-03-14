@@ -60,6 +60,6 @@ The frontend project should be located in the `frontend` folder and use the late
     - Allow only the author of a blog post or comment to perform actions such as editing or deleting their own content. Ensure that users can only modify or remove content they authored.
 
 6. **Styling**:
-    - Style the application using CSS or any preferred styling solution.
+    - Design can be simple and as per your preferred styling solution.
 
 7. **Challenging Task (Optional)**: Implement a collaborative editor for editing blog posts. Users can edit a blog post simultaneously, and their changes are saved in real-time (optional: using WebSocket technology).
