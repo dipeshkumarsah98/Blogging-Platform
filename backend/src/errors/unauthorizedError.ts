@@ -6,12 +6,9 @@ export default class UnauthorizedError extends CustomError {
 
   errorCode = 'UNAUTHORIZED';
 
-  details: string;
-
-  constructor(message: string, details: string) {
+  constructor(message: string) {
     super(message);
 
-    this.details = details;
     Object.setPrototypeOf(this, UnauthorizedError.prototype);
   }
 }

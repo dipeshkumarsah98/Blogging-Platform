@@ -6,12 +6,9 @@ export default class ValidationError extends CustomError {
 
   errorCode = 'BAD_REQUEST';
 
-  details: string;
-
-  constructor(message: string, details: string) {
+  constructor(message: string) {
     super(message);
 
-    this.details = details;
     Object.setPrototypeOf(this, ValidationError.prototype);
   }
 }

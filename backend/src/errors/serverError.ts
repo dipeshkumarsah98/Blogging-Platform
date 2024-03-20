@@ -5,12 +5,9 @@ export default class ServerError extends CustomError {
 
   errorCode = 'INTERNAL_SERVER_ERROR';
 
-  details: string;
-
-  constructor(message: string, details: string) {
+  constructor(message: string) {
     super(message);
 
-    this.details = details;
     Object.setPrototypeOf(this, ServerError.prototype);
   }
 }

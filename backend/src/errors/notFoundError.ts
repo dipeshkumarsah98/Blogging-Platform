@@ -5,12 +5,9 @@ export default class NotFoundError extends CustomError {
 
   errorCode = 'NOT_FOUND';
 
-  details: string;
-
-  constructor(message: string, details: string) {
+  constructor(message: string) {
     super(message);
 
-    this.details = details;
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
 }
