@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 require('express-async-errors');
 
 import apiRouter from 'routes';
