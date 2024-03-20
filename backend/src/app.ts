@@ -8,11 +8,12 @@ import express, { Express } from 'express';
 import errorHandler from 'middlewares/errorHandler';
 import env from 'config/env.config';
 import logger from 'utils/logger.utils';
-import notFoundHandler from 'middlewares/notFound';
+import { notFoundHandler } from 'middlewares/notFound';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from 'config/swagger.config';
+import PrismaService from 'config/db.config';
 
-const PORT = env.PORT;
+const { PORT } = env;
 const app: Express = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,7 +27,14 @@ app.use('/api/v1/', apiRouter);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  logger.info(`Server is running on http://localhost:${PORT}`);
-  logger.info(`API docs is running on http://localhost:${PORT}/api-docs`);
-});
+PrismaService.$connect()
+  .then(() => {
+    logger.info('Database connected');
+    app.listen(PORT, () => {
+      logger.info(`Server is running on http://localhost:${PORT}`);
+      logger.info(`API docs is running on http://localhost:${PORT}/api-docs`);
+    });
+  })
+  .catch((error) => {
+    logger.error(`Database connection error: ${error.message}`);
+  });
