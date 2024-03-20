@@ -1,6 +1,5 @@
-export default (status: number, message: string, details: string) => ({
+export default (status: number, message: string) => ({
   success: false,
   status,
   message,
-  details,
 });
