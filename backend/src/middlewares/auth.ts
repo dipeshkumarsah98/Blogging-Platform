@@ -1,10 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable import/extensions */
 import { Response, Request, NextFunction } from 'express';
 import Jwt from 'jsonwebtoken';
 import UnauthorizedError from 'errors/unauthorizedError';
 import envVars from 'config/env.config';
+import { verifyOtp } from 'utils/auth/otp.utils';
+import ValidationError from 'errors/badRequestError';
+import logger from 'utils/logger.utils';
 
+/**
+ *
+ * Validate whether user is authorized to access the resource
+ */
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
   // getting token from header
   const key: string = envVars.JWT_SECRET_KEY;
@@ -29,4 +34,37 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   return null;
 };
 
-export default validateToken;
+/**
+ *
+ * Validate the OTP token
+ */
+const validateOtp = (req: Request, res: Response, next: NextFunction) => {
+  logger.info('Validating OTP token');
+  const { token } = req.body;
+  if (!token) throw new ValidationError('Token is required.');
+
+  const isValidToken = verifyOtp(token);
+
+  if (!isValidToken) throw new ValidationError('Token is expired or invalid.');
+
+  next();
+};
+
+/**
+ *
+ * Check if the user is the owner of the resource
+ */
+const checkRole = (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+
+  const { user } = req;
+
+  if (id !== user.id) {
+    throw new UnauthorizedError(
+      'Sorry you do not have access to this resource.'
+    );
+  }
+  next();
+};
+
+export { validateToken, validateOtp, checkRole };

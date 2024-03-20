@@ -1,5 +1,6 @@
 import PrismaService from 'config/db.config';
 import { CreateUserDto, UpdateUserDto } from 'dto/user.dto';
+import { hashPassword } from 'utils/auth/bcrypt.utils';
 
 const userExist = async ({
   email,
@@ -22,7 +23,16 @@ const findUserByEmail = async (email: string) => {
 };
 
 const createUser = async (data: CreateUserDto) => {
-  const user = await PrismaService.user.create({ data });
+  const { password, ...rest } = data;
+
+  const hashPass = await hashPassword(password);
+
+  const user = await PrismaService.user.create({
+    data: {
+      ...rest,
+      password: hashPass,
+    },
+  });
   return user;
 };
 

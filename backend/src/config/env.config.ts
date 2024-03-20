@@ -16,6 +16,17 @@ const envVarsSchema = Joi.object()
     BUCKET_REGION: Joi.string().required(),
     AWS_ACCESS_KEY: Joi.string().required(),
     AWS_SECRET_ACCESS_KEY: Joi.string().required(),
+    APP_NAME: Joi.string().required(),
+    CLIENT_URL: Joi.string().required(),
+    REDIS_HOST: Joi.string().required(),
+    REDIS_PORT: Joi.string().required(),
+    REDIS_PASSWORD: Joi.string().allow(''),
+    EMAIL_SERVICE: Joi.string().required(),
+    EMAIL_ADDRESS: Joi.string().required(),
+    EMAIL_PASSWORD: Joi.string().required(),
+    SMTP_PORT: Joi.string().required(),
+    OTP_SECRET: Joi.string().required(),
+    OTP_DURATION_IN_SECS: Joi.string().required(),
   })
   .unknown();
 

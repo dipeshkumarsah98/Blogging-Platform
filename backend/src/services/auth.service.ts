@@ -1,15 +1,12 @@
 import { CreateUserDto } from 'dto/user.dto';
 import UnauthorizedError from 'errors/unauthorizedError';
-import { comparePassword, hashPassword } from 'utils/auth/bcrypt.utils';
+import { comparePassword } from 'utils/auth/bcrypt.utils';
 import generateTokens from 'utils/auth/jwtToken.utils';
 import * as userService from '../services/user.service';
 
 const signUp = async (data: CreateUserDto) => {
-  const hashPass = await hashPassword(data.password);
-
   const user = await userService.createUser({
     ...data,
-    password: hashPass,
   });
 
   return user;

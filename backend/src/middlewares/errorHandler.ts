@@ -4,6 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 import CustomError from 'errors/customError';
 import errorResponse from 'utils/common/errorResponse.utils';
 import { StatusCodes } from 'http-status-codes';
+import logger from 'utils/logger.utils';
 
 const errorHandler = (
   error: Error,
@@ -11,6 +12,7 @@ const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  logger.warn(`Error: ${error.message}`);
   if (error instanceof CustomError) {
     return res
       .status(error.statusCode)
